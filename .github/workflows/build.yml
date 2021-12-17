@@ -5,7 +5,7 @@ on:
   push:
     branches: [ $default-branch ]
     # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    #tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ $default-branch ]
 
