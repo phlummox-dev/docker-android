@@ -95,32 +95,32 @@ ENV ANDROID_SDK_ROOT=/home/${USER_NAME}/Android/Sdk
 
 WORKDIR /home/${USER_NAME}
 
-#RUN \
-#  wget -q $ANDROID_TOOLS_URL \
-#    && printf '%s  commandlinetools-linux-7583922_latest.zip' "$ANDROID_TOOLS_CHECKSUM" | sha256sum -c - \
-#    && mkdir -p $ANDROID_SDK_ROOT/cmdline-tools \
-#    && unzip -q commandlinetools-linux-*.zip -d /tmp \
-#    && rm -f commandlinetools-linux-*.zip \
-#    && mv /tmp/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
-#
-#RUN  \
-#      yes  | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;31.0.0" "platforms;android-31"
-#
-#ENV ANDROID_STUDIO_LOC=/opt/android-studio
-#ENV PATH=/home/${USER_NAME}/flutter/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH:$ANDROID_STUDIO_LOC/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
-#
-###RUN yes     | sdkmanager "system-images;android-31;google_apis;x86_64"
-###RUN echo no | avdmanager create avd -n avd28 -k "system-images;android-31;google_apis;x86_64"
-#
-## Install studio
-#ARG ANDROID_STUDIO_URL=https://dl.google.com/dl/android/studio/ide-zips/2020.3.1.26/android-studio-2020.3.1.26-linux.tar.gz
-#RUN  curl -s $ANDROID_STUDIO_URL | sudo tar xf - --gzip -C /opt
-#
-#RUN \
-#  flutter config --android-studio-dir=$ANDROID_STUDIO_LOC \
-#  &&  yes | flutter doctor --android-licenses \
-#  && flutter doctor -v
-#
+RUN \
+  wget -q $ANDROID_TOOLS_URL \
+    && printf '%s  commandlinetools-linux-7583922_latest.zip' "$ANDROID_TOOLS_CHECKSUM" | sha256sum -c - \
+    && mkdir -p $ANDROID_SDK_ROOT/cmdline-tools \
+    && unzip -q commandlinetools-linux-*.zip -d /tmp \
+    && rm -f commandlinetools-linux-*.zip \
+    && mv /tmp/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+
+RUN  \
+      yes  | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;31.0.0" "platforms;android-31"
+
+ENV ANDROID_STUDIO_LOC=/opt/android-studio
+ENV PATH=/home/${USER_NAME}/flutter/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH:$ANDROID_STUDIO_LOC/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
+
+##RUN yes     | sdkmanager "system-images;android-31;google_apis;x86_64"
+##RUN echo no | avdmanager create avd -n avd28 -k "system-images;android-31;google_apis;x86_64"
+
+# Install studio
+ARG ANDROID_STUDIO_URL=https://dl.google.com/dl/android/studio/ide-zips/2020.3.1.26/android-studio-2020.3.1.26-linux.tar.gz
+RUN  curl -s $ANDROID_STUDIO_URL | sudo tar xf - --gzip -C /opt
+
+RUN \
+  flutter config --android-studio-dir=$ANDROID_STUDIO_LOC \
+  &&  yes | flutter doctor --android-licenses \
+  && flutter doctor -v
+
 ### For Qt WebEngine on docker
 ##ENV QTWEBENGINE_DISABLE_SANDBOX 1
 ##
