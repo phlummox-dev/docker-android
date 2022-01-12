@@ -121,9 +121,9 @@ RUN \
   &&  yes | flutter doctor --android-licenses \
   && flutter doctor -v
 
-## For Qt WebEngine on docker
-#ENV QTWEBENGINE_DISABLE_SANDBOX 1
+### For Qt WebEngine on docker
+##ENV QTWEBENGINE_DISABLE_SANDBOX 1
+##
 #
-
-#RUN flutter/bin/flutter precache
-
+##RUN flutter/bin/flutter precache
+#
