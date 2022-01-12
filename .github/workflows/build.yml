@@ -3,15 +3,19 @@ name: build-image
 
 on:
   push:
-    branches: [ master ]
-    # Publish semver tags as releases.
-    #tags: [ 'v*.*.*' ]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - '.dockerignore'
   pull_request:
-    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - '.dockerignore'
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: phlummox/gitpod-android-studio
+  IMAGE_NAME: phlummox/android-studio
 
 jobs:
   build:
