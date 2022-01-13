@@ -42,7 +42,7 @@ RUN dpkg --add-architecture i386 \
         libncurses5:i386          \
         libstdc++6:i386           \
         ninja-build               \
-        openjdk-8-jdk             \
+        openjdk-11-jdk            \
         pkg-config                \
         pv                        \
         sudo                      \
@@ -56,7 +56,7 @@ RUN dpkg --add-architecture i386 \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/* && \
     rm -rf /var/tmp/* && \
-    update-java-alternatives --set java-1.8.0-openjdk-amd64
+    update-java-alternatives --set java-1.11.0-openjdk-amd64
 
 ARG USER_NAME=user
 ARG USER_ID=1001
